@@ -14,7 +14,7 @@
 ### 1. Клонируйте репозиторий
 
 ```bash
-git clone https://github.com/kao4uka/app-accounting.git
+git clone https://github.com/kao4uka/test_KeyDev.git
 ```
 ### 2. Установите и активируйте виртуальное окружение:
 ```bash
