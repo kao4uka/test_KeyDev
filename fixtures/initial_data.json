@@ -1,0 +1,130 @@
+[
+  {
+    "model": "app.balancearticle",
+    "pk": 1,
+    "fields": { "name": "Активы" }
+  },
+  {
+    "model": "app.balancearticle",
+    "pk": 2,
+    "fields": { "name": "Пассивы" }
+  },
+
+  {
+    "model": "app.balancegroup",
+    "pk": 1,
+    "fields": { "name": "Касса", "article": 1 }
+  },
+  {
+    "model": "app.balancegroup",
+    "pk": 2,
+    "fields": { "name": "Банковский счёт", "article": 1 }
+  },
+  {
+    "model": "app.balancegroup",
+    "pk": 3,
+    "fields": { "name": "Краткосрочные кредиты", "article": 2 }
+  },
+  {
+    "model": "app.balancegroup",
+    "pk": 4,
+    "fields": { "name": "Уставной капитал", "article": 2 }
+  },
+
+  {
+    "model": "app.account",
+    "pk": 1,
+    "fields": {
+      "number": "1000000001",
+      "name": "Касса",
+      "type": "asset",
+      "group": 1,
+      "balance": "10000.00"
+    }
+  },
+  {
+    "model": "app.account",
+    "pk": 2,
+    "fields": {
+      "number": "1000000002",
+      "name": "Банк",
+      "type": "asset",
+      "group": 2,
+      "balance": "5000.00"
+    }
+  },
+  {
+    "model": "app.account",
+    "pk": 3,
+    "fields": {
+      "number": "2000000001",
+      "name": "Кредит банка",
+      "type": "liability",
+      "group": 3,
+      "balance": "3000.00"
+    }
+  },
+  {
+    "model": "app.account",
+    "pk": 4,
+    "fields": {
+      "number": "2000000002",
+      "name": "Уставной капитал",
+      "type": "liability",
+      "group": 4,
+      "balance": "10000.00"
+    }
+  },
+
+  {
+    "model": "app.transaction",
+    "pk": 1,
+    "fields": {
+      "created_at": "2024-01-01T12:00:00Z",
+      "description": "Перевод из кассы в банк",
+      "amount": "1000.00",
+      "debit_account": 2,
+      "credit_account": 1,
+      "is_reversed": false
+    }
+  },
+
+  {
+    "model": "app.transaction",
+    "pk": 2,
+    "fields": {
+      "created_at": "2024-01-01T12:00:00Z",
+      "description": "Погашение части капитала за счёт кредита",
+      "amount": "500.00",
+      "debit_account": 4,
+      "credit_account": 3,
+      "is_reversed": false
+    }
+  },
+
+  {
+    "model": "app.transaction",
+    "pk": 3,
+    "fields": {
+      "created_at": "2024-01-01T12:00:00Z",
+      "description": "Получение кредита от банка",
+      "amount": "2000.00",
+      "debit_account": 1,
+      "credit_account": 3,
+      "is_reversed": false
+    }
+  },
+
+  {
+    "model": "app.transaction",
+    "pk": 4,
+    "fields": {
+      "created_at": "2024-01-01T12:00:00Z",
+      "description": "Оплата долга из банковского счёта",
+      "amount": "1500.00",
+      "debit_account": 3,
+      "credit_account": 2,
+      "is_reversed": false
+    }
+  }
+]

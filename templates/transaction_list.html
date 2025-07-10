@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+
+  <h2>Исходные транзакции</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Дата</th>
+        <th>Описание</th>
+        <th>Дебет</th>
+        <th>Кредит</th>
+        <th>Сумма</th>
+        <th>Действие</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in original_transactions %}
+      <tr>
+        <td>{{ t.created_at|date:"Y-m-d H:i" }}</td>
+        <td>{{ t.description }}</td>
+        <td>{{ t.credit_account }}</td>
+        <td>{{ t.debit_account }}</td>
+        <td>{{ t.amount }}</td>
+        <td>
+          {% if not t.is_reversed %}
+          <form method="post" action="{% url 'transaction-reverse' t.pk %}">
+            {% csrf_token %}
+            <button class="btn btn-danger btn-sm">Сторнировать</button>
+          </form>
+          {% else %}
+          <span class="badge bg-secondary">Удалено</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="6" class="text-muted">Нет транзакций</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h2 class="mt-5">Сторно-транзакции</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Дата</th>
+        <th>Описание</th>
+        <th>Дебет</th>
+        <th>Кредит</th>
+        <th>Сумма</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in reversal_transactions %}
+      <tr>
+        <td>{{ t.created_at|date:"Y-m-d H:i" }}</td>
+        <td>{{ t.description }}</td>
+        <td>{{ t.reversal_of.debit_account }}</td>
+        <td>{{ t.reversal_of.credit_account }}</td>
+        <td>{{ t.amount }}</td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="6" class="text-muted">Нет сторно-транзакций</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+{% endblock %}

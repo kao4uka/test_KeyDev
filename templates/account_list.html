@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Список счетов</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Номер</th>
+      <th>Название</th>
+      <th>Тип</th>
+      <th>Баланс</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for account in accounts %}
+    <tr>
+      <td>{{ account.number }}</td>
+      <td>{{ account.name }}</td>
+      <td>{{ account.get_type_display }}</td>
+      <td>{{ account.balance }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

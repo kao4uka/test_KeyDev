@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+*.env
+.env
+*.env.*
+
+# Django
+*.db
+/static/
+/media/
+local_settings.py
+
+# VSCode/PyCharm
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Virtualenv
+venv/
+ENV/
+.env/
+.venv/
+
+# Migrations
+**/migrations/
+**/migrations/*.py[cod]
+!**/migrations/__init__.py
